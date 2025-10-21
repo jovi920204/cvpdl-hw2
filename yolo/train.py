@@ -17,7 +17,8 @@ def train_model(model, dataset_path, epochs, imgsz, device, resume=False):
         seed=42,
         save_period=10,
         plots=True,
-        resume=resume
+        resume=resume,
+        project='runs/train',
     )
 
     print(f"{'Resuming' if resume else 'Starting'} training on {device} for {epochs} epochs ...")
@@ -30,7 +31,7 @@ def main(mode, dataset_path, epochs, imgsz, device, pretrained_model):
 
     if mode == "scratch":
         print("Training YOLOv8 model from scratch...")
-        model = YOLO("yolov8m.yaml")
+        model = YOLO("yolo11m.yaml")
         results = train_model(model, dataset_path, epochs, imgsz, device, resume=False)
 
     elif mode == "resume":
@@ -52,9 +53,9 @@ if __name__ == "__main__":
 
     parser.add_argument("--mode", type=str, choices=["scratch", "resume"], default="scratch",
                         help="Training mode: 'scratch' (new training) or 'resume' (continue training)")
-    parser.add_argument("--dataset", type=str, default="dataset_yolo/dataset_yolo.yaml",
+    parser.add_argument("--dataset", type=str, default="../dataset_yolo/dataset_yolo.yaml",
                         help="Path to dataset YAML file")
-    parser.add_argument("--epochs", type=int, default=20, help="Number of training epochs")
+    parser.add_argument("--epochs", type=int, default=100, help="Number of training epochs")
     parser.add_argument("--imgsz", type=int, default=640, help="Input image size")
     parser.add_argument("--device", type=str, default="cuda:0",
                         help="Training device, e.g., 'cuda:0', 'cuda:1', or 'cpu'")

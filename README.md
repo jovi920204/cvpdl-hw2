@@ -1,4 +1,10 @@
-COCO Converter for provided dataset
+## Classes Distribution
+Class 0: 23275 instances
+Class 1: 1345 instances 
+Class 2: 3363 instances 
+Class 3: 5348 instances 
+
+## COCO Converter for provided dataset
 
 這個 repository 含有一個簡單的轉換腳本，用來把每張影像對應的 `.txt` 標註轉成 COCO JSON。
 

@@ -1,4 +1,7 @@
 ntu-cvpdl-2025-hw-2.zip
 dataset
+dataset_yolo/
+dataset_yolo_downsampled/
+*__pycache__/
 *.pt
 *.pth
