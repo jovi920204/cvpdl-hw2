@@ -77,7 +77,7 @@ def convert_file(label_path: Path, img_path: Path, default_size=(1920,1080)):
 
 def main():
     root = Path.cwd()
-    ds = 'C:\\Users\\jovi9\\Desktop\\cvpdl-hw2\\dataset_yolo'
+    ds = '../dataset_yolo'
     print(ds)
     if not Path(ds).exists():
         print('dataset_yolo not found in current working directory')

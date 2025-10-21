@@ -87,7 +87,7 @@ def main():
     p.add_argument('--src', default='dataset_yolo', help='Source dataset folder')
     p.add_argument('--out', default='dataset_yolo_downsampled', help='Output folder name')
     p.add_argument('--class-id', type=str, default='0', help='Class id to downsample (as string)')
-    p.add_argument('--target', type=int, default=6000, help='Approx target number of instances for the class')
+    p.add_argument('--target', type=int, default=4000, help='Approx target number of instances for the class')
     p.add_argument('--seed', type=int, default=42, help='Random seed')
     p.add_argument('--apply', action='store_true', help='Actually create the downsampled dataset (otherwise dry-run)')
     args = p.parse_args()

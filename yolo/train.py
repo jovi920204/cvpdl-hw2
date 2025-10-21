@@ -10,7 +10,7 @@ def train_model(model, dataset_path, epochs, imgsz, device, resume=False):
         epochs=epochs,
         imgsz=imgsz,
         device=device,
-        batch=16,
+        batch=128,
         patience=100,
         lr0=1e-4,
         optimizer='AdamW',
@@ -53,11 +53,11 @@ if __name__ == "__main__":
 
     parser.add_argument("--mode", type=str, choices=["scratch", "resume"], default="scratch",
                         help="Training mode: 'scratch' (new training) or 'resume' (continue training)")
-    parser.add_argument("--dataset", type=str, default="../dataset_yolo/dataset_yolo.yaml",
+    parser.add_argument("--dataset", type=str, default="../dataset_yolo_downsampled/dataset_yolo_downsampled.yaml",
                         help="Path to dataset YAML file")
-    parser.add_argument("--epochs", type=int, default=100, help="Number of training epochs")
-    parser.add_argument("--imgsz", type=int, default=640, help="Input image size")
-    parser.add_argument("--device", type=str, default="cuda:0",
+    parser.add_argument("--epochs", type=int, default=150, help="Number of training epochs")
+    parser.add_argument("--imgsz", type=int, default=1280, help="Input image size")
+    parser.add_argument("--device", type=str, default="cuda:1",
                         help="Training device, e.g., 'cuda:0', 'cuda:1', or 'cpu'")
     parser.add_argument("--pretrained_model", type=str, default=None,
                         help="Path to a trained model checkpoint (required if mode=resume)")

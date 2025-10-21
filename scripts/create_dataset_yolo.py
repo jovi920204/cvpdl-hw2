@@ -68,13 +68,13 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--val-fraction', type=float, default=0.2, help='Fraction of images to use for validation')
     p.add_argument('--seed', type=int, default=42, help='Random seed')
-    p.add_argument('--dataset-dir', type=str, default='dataset', help='Source dataset directory (root)')
-    p.add_argument('--out-dir', type=str, default='dataset_yolo', help='Output dataset directory')
+    p.add_argument('--dataset-dir', type=str, default='../dataset', help='Source dataset directory (root)')
+    p.add_argument('--out-dir', type=str, default='../dataset_yolo', help='Output dataset directory')
     p.add_argument('--ann-train', type=str, default='dataset/annotations/annotations_train.json', help='COCO train annotation (optional)')
     p.add_argument('--ann-val', type=str, default='dataset/annotations/annotations_val.json', help='COCO val annotation (optional)')
     p.add_argument('--names', type=str, nargs='*', help='Optional override for class names')
     args = p.parse_args()
-
+    
     root = Path.cwd()
     src_root = root / args.dataset_dir
     out_root = root / args.out_dir
