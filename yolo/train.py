@@ -9,8 +9,8 @@ def train_model(model, dataset_path, epochs, imgsz, device, resume=False):
         data=dataset_path,
         epochs=epochs,
         imgsz=imgsz,
-        device=device,
-        batch=128,
+        device=[2],
+        batch=8,
         patience=100,
         lr0=1e-4,
         optimizer='AdamW',
@@ -19,6 +19,8 @@ def train_model(model, dataset_path, epochs, imgsz, device, resume=False):
         plots=True,
         resume=resume,
         project='runs/train',
+        mosaic=0,
+        scale=0
     )
 
     print(f"{'Resuming' if resume else 'Starting'} training on {device} for {epochs} epochs ...")
@@ -53,11 +55,11 @@ if __name__ == "__main__":
 
     parser.add_argument("--mode", type=str, choices=["scratch", "resume"], default="scratch",
                         help="Training mode: 'scratch' (new training) or 'resume' (continue training)")
-    parser.add_argument("--dataset", type=str, default="../dataset_yolo_downsampled/dataset_yolo_downsampled.yaml",
+    parser.add_argument("--dataset", type=str, default="../dataset_yolo/dataset_yolo.yaml",
                         help="Path to dataset YAML file")
     parser.add_argument("--epochs", type=int, default=150, help="Number of training epochs")
     parser.add_argument("--imgsz", type=int, default=1280, help="Input image size")
-    parser.add_argument("--device", type=str, default="cuda:1",
+    parser.add_argument("--device", type=str, default="cuda:2",
                         help="Training device, e.g., 'cuda:0', 'cuda:1', or 'cpu'")
     parser.add_argument("--pretrained_model", type=str, default=None,
                         help="Path to a trained model checkpoint (required if mode=resume)")

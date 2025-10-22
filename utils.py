@@ -107,5 +107,33 @@ def create_balanced_dataset():
     plt.savefig("class_distribution.png")
     plt.show()
 
+def plot_ground_truth_on_img():
+    # read img
+    import cv2
+    dataset_dir = "dataset_yolo"
+    img_path = os.path.join(dataset_dir, "images", "train", "img0001.png")
+    # read gt
+    label_path = os.path.join(dataset_dir, "labels", "train", "img0001.txt")
+    img = cv2.imread(img_path)
+    h, w, _ = img.shape
+    with open(label_path, "r", encoding="utf-8") as f:
+        for line in f:
+            parts = line.strip().split()
+            if not parts:
+                continue
+            cls_id = int(parts[0])
+            cx = float(parts[1]) * w
+            cy = float(parts[2]) * h
+            bw = float(parts[3]) * w
+            bh = float(parts[4]) * h
+            x1 = int(cx - bw / 2)
+            y1 = int(cy - bh / 2)
+            x2 = int(cx + bw / 2)
+            y2 = int(cy + bh / 2)
+            cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            cv2.putText(img, str(cls_id), (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36,255,12), 2)
+    cv2.imwrite("gt_img0001.png", img)
+
 if __name__ == "__main__":
-    count_classes_distribution()
+    # count_classes_distribution()
+   plot_ground_truth_on_img()
