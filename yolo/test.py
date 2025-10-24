@@ -40,6 +40,7 @@ def run_inference(args):
                 conf=args.conf,
                 iou=args.iou,
                 imgsz=args.imgsize,
+                augment=args.tta,
                 device=[2],
                 save=args.save_img,
                 project=args.save_dir if args.save_img else None,
@@ -80,6 +81,7 @@ def main():
     parser.add_argument("--conf", type=float, default=0.25, help="Confidence threshold")
     parser.add_argument("--iou", type=float, default=0.7, help="IoU threshold")
     parser.add_argument("--imgsize", type=int, default=1280, help="Input image size for inference")
+    parser.add_argument("--tta", action="store_true", help="Enable test-time augmentation")
     parser.add_argument("--batch_size", type=int, default=32, help="Number of images per batch")
     parser.add_argument("--save_img", action="store_true", help="Save annotated images")
 

@@ -4,14 +4,14 @@ import sys
 
 
 def train_model(model, dataset_path, epochs, imgsz, resume=False):
-    device = [0]
+    device = [4]
     """Unified YOLO training function"""
     train_params = dict(
         data=dataset_path,
         epochs=epochs,
         imgsz=imgsz,
         device=device,
-        batch=2,
+        batch=4,
         patience=100,
         # lr0=1e-4,
         # optimizer='AdamW',
@@ -31,8 +31,8 @@ def main(mode, dataset_path, epochs, imgsz, pretrained_model):
         sys.exit("Error: mode must be 'scratch' or 'resume'")
 
     if mode == "scratch":
-        print("Training YOLOv11l model from scratch...")
-        model = YOLO("yolo11l.yaml")
+        print("Training YOLOv8l model from scratch...")
+        model = YOLO("yolov8l.yaml")
         results = train_model(model, dataset_path, epochs, imgsz, resume=False)
 
     elif mode == "resume":
@@ -48,7 +48,7 @@ def main(mode, dataset_path, epochs, imgsz, pretrained_model):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="YOLOv11l training launcher",
+        description="YOLOv8l training launcher",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
 
@@ -56,7 +56,7 @@ if __name__ == "__main__":
                         help="Training mode: 'scratch' (new training) or 'resume' (continue training)")
     parser.add_argument("--dataset", type=str, default="../dataset_yolo/dataset_yolo.yaml",
                         help="Path to dataset YAML file")
-    parser.add_argument("--epochs", type=int, default=300, help="Number of training epochs")
+    parser.add_argument("--epochs", type=int, default=150, help="Number of training epochs")
     parser.add_argument("--imgsz", type=int, default=1280, help="Input image size")
     parser.add_argument("--pretrained_model", type=str, default=None,
                         help="Path to a trained model checkpoint (required if mode=resume)")
